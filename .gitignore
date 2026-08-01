@@ -1,0 +1,5 @@
+node_modules/
+.git/
+test.txt
+package-lock.json
+file_00000000f6d082089787479c2785d3a9.svg

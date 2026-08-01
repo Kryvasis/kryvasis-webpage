@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attack Surface Inflation in Cloud-Native Architectures — Kryvasis</title>
+  <meta name="description" content="How microservices, service meshes, and serverless functions expand the attack surface.">
+  <meta property="og:title" content="Attack Surface Inflation in Cloud-Native Architectures — Kryvasis">
+  <meta property="og:description" content="How microservices, service meshes, and serverless functions expand the attack surface.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kryvasis.com/attack-surface-inflation">
+  <meta property="og:site_name" content="Kryvasis">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://kryvasis.com/attack-surface-inflation">
+  <link rel="apple-touch-icon" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="particlesCanvas" class="particles"></div>
+  <div id="skeleton" class="skeleton" role="status" aria-label="Loading">
+    <div class="sk-navbar">
+      <div class="sk-logo">
+        <div class="sk-bone sk-logo-icon"></div>
+        <div class="sk-bone sk-logo-text"></div>
+      </div>
+      <div class="sk-nav-links">
+        <div class="sk-bone sk-nav-link"></div>
+        <div class="sk-bone sk-nav-link"></div>
+        <div class="sk-bone sk-nav-link"></div>
+        <div class="sk-bone sk-nav-cta"></div>
+      </div>
+    </div>
+    <div class="sk-profile-hero">
+      <div class="sk-bone sk-profile-name"></div>
+      <div class="sk-section-divider"></div>
+      <div class="sk-bone sk-bio-line"></div>
+    </div>
+    <div class="sk-footer">
+      <div class="sk-bone sk-footer-logo"></div>
+    </div>
+  </div>
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container">
+      <a href="../index.html" class="navbar-logo">
+        <img src="../assets/img/logo.png" alt="Kryvasis">
+        <span>KRYVASIS</span>
+      </a>
+      <ul class="navbar-links" id="navbar-menu">
+        <button class="mobile-close" aria-label="Close menu">&times;</button>
+        <li><a href="../index.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#7D8590" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</a></li>
+        <li><a href="../service.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#7D8590" d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>Services</a></li>
+        <li><a href="../case-studies.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#7D8590" d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>Case Studies</a></li>
+        <li><a href="../insights.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#7D8590" d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg>Insights</a></li>
+        <li><a href="../resources.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#7D8590" d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Resources</a></li>
+        <li><a href="../team.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#7D8590" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Team</a></li>
+        <li><a href="../careers.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#7D8590" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>Careers</a></li>
+        <li><a href="../booking.html" class="navbar-cta">Book a Consultation</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbar-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <main id="main-content">
+  <section class="profile-hero">
+    <div class="container">
+      <h1 class="reveal">Attack Surface Inflation in Cloud-Native Architectures</h1>
+      <div class="animated-divider reveal" style="margin: 1.5rem auto;"></div>
+      <p class="reveal" style="max-width:55ch;margin:0 auto;color:var(--gunmetal);font-size:0.95rem;">How microservices, service meshes, and serverless functions expand the attack surface.</p>
+      <p class="reveal" style="max-width:55ch;margin:0.5rem auto 0;color:var(--silver);font-size:0.85rem;">March 2026 · Kryvasis Research</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container" style="max-width:720px;">
+      <div class="article-content reveal">
+        <p style="margin-bottom:1rem;">Cloud-native architecture promises agility, scalability, and operational efficiency. It also introduces a fundamentally different security challenge: every architectural decision that increases modularity simultaneously increases the number of distinct entry points an adversary can target. A monolithic application with a single authentication boundary has a manageable attack surface. A microservices architecture decomposing that same application into 40 independently deployable services, each with its own API surface, runtime environment, and credential scope, multiplies the attack surface by orders of magnitude. This is not a theoretical concern. It is the operational reality that security teams in cloud-native organisations confront daily.</p>
+
+        <h3 style="margin:2rem 0 1rem;font-family:'Cinzel',serif;font-size:1.1rem;">Microservices and the Entry Point Explosion</h3>
+        <p style="margin-bottom:1rem;">Each microservice in a distributed architecture exposes an interface, whether through REST APIs, gRPC endpoints, message queue subscriptions, or event-driven triggers. These interfaces require authentication, authorisation, input validation, and rate limiting independently. The misconfiguration of a single service's access policy can provide an attacker with a pivot point into the broader service graph. Service discovery mechanisms, configuration registries, and shared secrets stores become high-value targets precisely because they provide standing access across the entire mesh. The attack surface is not merely the sum of individual service vulnerabilities; it is the combinatorial space of how those services interact, trust each other, and fail under adversarial conditions.</p>
+
+        <h3 style="margin:2rem 0 1rem;font-family:'Cinzel',serif;font-size:1.1rem;">Service Mesh and Serverless Complications</h3>
+        <p style="margin-bottom:1rem;">Service meshes such as Istio and Linkerd add a data plane proxy to every service interaction, introducing mTLS negotiation, traffic policy enforcement, and observability instrumentation. While these capabilities materially improve security posture when properly configured, they also introduce new attack surfaces: the control plane itself becomes a critical target, misconfigured mTLS policies can silently downgrade to plaintext, and sidecar proxy vulnerabilities can bypass the entire mesh security model. Serverless functions present a different vector entirely. Ephemeral execution environments reduce the persistence of compromised code but expand the attack surface through permissive IAM roles, event injection vectors, and the difficulty of maintaining consistent security policies across hundreds of function-level deployment units.</p>
+
+        <h3 style="margin:2rem 0 1rem;font-family:'Cinzel',serif;font-size:1.1rem;">Containment and Blast Radius Modelling</h3>
+        <p style="margin-bottom:1rem;">The strategic response to attack surface inflation is not to resist decomposition but to architect containment. <strong>Blast radius modelling</strong> must be conducted at the service graph level, identifying which compromise scenarios can cascade across service boundaries and implementing circuit breakers, mutual authentication, and least-privilege network policies to limit lateral movement. API gateways should enforce consistent authentication, authorisation, and rate limiting at the perimeter of each service domain. Continuous runtime threat detection must operate at the service mesh level, correlating anomalous inter-service communication patterns with known attack techniques. Practical recommendations include implementing zero-trust network policies at the pod level, enforcing pod security standards that prevent privilege escalation within the cluster, and maintaining a real-time service dependency graph that is validated against actual network flow telemetry.</p>
+
+        <p style="margin-bottom:1rem;">Organisations that invest in architectural security modelling during their cloud-native transformation will contain the attack surface inflation that the architecture inherently produces. Those that treat security as a post-deployment afterthought will discover that their blast radius extends far beyond any individual service boundary.</p>
+      </div>
+      <div style="margin-top:3rem;text-align:center;">
+        <a href="../insights.html" class="btn-primary" style="display:inline-block;">&larr; Back to Insights</a>
+      </div>
+    </div>
+  </section>
+  </main>
+  <a href="#" class="back-to-top" aria-label="Back to top">&uarr;</a>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <img src="../assets/img/logo.png" alt="Kryvasis" width="32" height="32" loading="lazy">
+        <span>KRYVASIS</span>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Kryvasis. All rights reserved. <a href="../privacy.html">Privacy Policy</a>. By private mandate only.</p>
+      </div>
+    </div>
+  </footer>
+  <script type="module">
+    import * as THREE from 'three';
+    window.THREE = THREE;
+    const s = document.createElement('script');
+    s.src = '../assets/js/particles.js';
+    s.onload = function () {
+      requestAnimationFrame(function () {
+        if (window.initParticlesSwarm) window.initParticlesSwarm('particlesCanvas', 12000);
+      });
+    };
+    document.body.appendChild(s);
+  </script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "kryvasis-webpage",
+  "version": "1.0.0",
+  "description": "Kryvasis — Cybersecurity Assurance",
+  "private": true,
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  }
+}

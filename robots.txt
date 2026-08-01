@@ -1,0 +1,18 @@
+# Kryvasis — Cybersecurity Assurance
+# https://kryvasis.com
+
+User-agent: *
+Allow: /
+Disallow: /*.json$
+
+Sitemap: https://kryvasis.com/sitemap.xml
+
+# Crawl-delay for polite bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
